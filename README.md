@@ -1,11 +1,11 @@
-# JSON Database
+# Text Editor
 JetBrains Academy Study Project
 
 # About
-JSON is a ubiquitous format for exchanging data between web servers and browsers. Its simple design and flexibility make it easy to understand and use in the programming language of your choice. You will create a client-server application that allows the clients to store their data on the server in JSON format.
+Looks like you like challenges! This project, however, is not too tricky if you’re feeling like an advanced learner. A text editor you’re going to write allows to search for specific files and open them. Check out the prerequisites, and if you’re ready, let’s roll!
 
 # Learning outcomes
-You will get a firm grasp of working with JSON in Java. You will also practice parallelization and see how to implement processing multiple requests at the same time.
+Apart from applying your basic knowledge about loops, strings, methods, classes and other topics, you will get a grasp of SWING, a widget library for GUI (graphical user interface).
 
 
 
