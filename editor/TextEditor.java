@@ -26,6 +26,21 @@ public class TextEditor extends JFrame {
     }
 
     private void initComponents() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("File");
+        fileMenu.setName("MenuFile");
+
+        JMenuItem loadMenuItem = new JMenuItem("Load");
+        loadMenuItem.setName("MenuLoad");
+
+        JMenuItem saveMenuItem = new JMenuItem("Save");
+        saveMenuItem.setName("MenuSave");
+
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        exitMenuItem.setName("MenuExit");
+        exitMenuItem.addActionListener(new Exit(this));
+
         JPanel topPanel = new JPanel();
         topPanel.setSize(600, 100);
 
@@ -39,38 +54,19 @@ public class TextEditor extends JFrame {
         JButton saveBtn = new JButton("Save");
         saveBtn.setName("SaveButton");
         saveBtn.setPreferredSize(new Dimension(100, 27));
-        saveBtn.addActionListener(event -> {
-            String fileName = textField.getText();
-            try {
-                FileWriter fw = new FileWriter( fileName, false);
-                String textToFile = textArea.getText();
-                fw.write(textToFile);
-                fw.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
+        saveBtn.addActionListener(new Save(textField, textArea));
+
+        saveMenuItem.addActionListener(new Save(textField, textArea));
 
 
 
         JButton loadBtn = new JButton("Load");
         loadBtn.setName("LoadButton");
         loadBtn.setPreferredSize(new Dimension(100, 27));
-        loadBtn.addActionListener(event -> {
-            String fileName = textField.getText();
-            try {
-                Path pathToFile = Paths.get(fileName);
-                if (Files.exists(pathToFile)) {
-                    String textFromFile = Files.readString(pathToFile);
-                    textArea.setText(textFromFile);
-                } else {
-                    textArea.setText("");
-                    throw new FileNotFoundException("File not found");
-                }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
+        loadBtn.addActionListener(new Load(textField, textArea));
+
+        loadMenuItem.addActionListener(new Load(textField, textArea));
+
 
 
         topPanel.add(textField);
@@ -99,6 +95,13 @@ public class TextEditor extends JFrame {
         add(topPanel);
         add(bottomPanel);
 
+        fileMenu.add(loadMenuItem);
+        fileMenu.add(saveMenuItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitMenuItem);
+
+        menuBar.add(fileMenu);
+        setJMenuBar(menuBar);
 
 
 
